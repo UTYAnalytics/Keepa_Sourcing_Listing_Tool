@@ -4,3 +4,4 @@ pyvirtualdisplay
 chromedriver-autoinstaller
 requests
 pandas
+toml
