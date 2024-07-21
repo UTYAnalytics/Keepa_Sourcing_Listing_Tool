@@ -45,10 +45,10 @@ def get_keyword_from_supabase():
 
 def get_data_from_supabase():
     response = supabase.table("keyword_input_sourcing").select("*").execute()
-    if response.status_code == 200:
-        return pd.DataFrame(response.data)
+    if hasattr(response, "error") and response.error is not None:
+        raise Exception("Failed to fetch data from Supabase")  
     else:
-        raise Exception("Failed to fetch data from Supabase")
+        return pd.DataFrame(response.data)
 while True:      
     # Fetch raw data if needed
     supabase_data = get_data_from_supabase()
