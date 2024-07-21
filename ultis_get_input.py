@@ -49,15 +49,15 @@ def get_data_from_supabase():
         return pd.DataFrame(response.data)
     else:
         raise Exception("Failed to fetch data from Supabase")
-        
-# Fetch raw data if needed
-supabase_data = get_data_from_supabase()
-if compare_data(get_raw_data(), supabase_data):
-    print("New data found. Running workflow...")
-    insert_input_to_supabase(get_raw_data())
-    # Fetch keyword from Supabase
-    keywords = get_keyword_from_supabase()
-    if not keywords:
-        raise Exception("No keyword found for today's date")
-    for keyword in keywords:
-        trigger_github_workflow(keyword, GITHUB_TOKEN)
+while True:      
+    # Fetch raw data if needed
+    supabase_data = get_data_from_supabase()
+    if compare_data(get_raw_data(), supabase_data):
+        print("New data found. Running workflow...")
+        insert_input_to_supabase(get_raw_data())
+        # Fetch keyword from Supabase
+        keywords = get_keyword_from_supabase()
+        if not keywords:
+            raise Exception("No keyword found for today's date")
+        for keyword in keywords:
+            trigger_github_workflow(keyword, GITHUB_TOKEN)
