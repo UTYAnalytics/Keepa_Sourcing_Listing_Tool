@@ -26,4 +26,4 @@ jobs:
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         run: |
-        python ultis_get_input.py
+          python ultis_get_input.py
