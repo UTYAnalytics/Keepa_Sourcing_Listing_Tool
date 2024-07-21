@@ -58,23 +58,23 @@ def get_data_from_supabase():
         return pd.DataFrame(response.data)
 
 
-while True:
+# while True:
     # Fetch raw data if needed
-    supabase_data = get_data_from_supabase()
-    if compare_data(get_raw_data(), supabase_data):
-        print("New data found. Running workflow...")
-        try:
-            insert_input_to_supabase(get_raw_data())
-        except Exception as e:
-            print(f"Error upserting data to Supabase: {e}")
-            continue
+supabase_data = get_data_from_supabase()
+if compare_data(get_raw_data(), supabase_data):
+    print("New data found. Running workflow...")
+    try:
+        insert_input_to_supabase(get_raw_data())
+    except Exception as e:
+        print(f"Error upserting data to Supabase: {e}")
+        # continue
 
-        # Fetch keyword from Supabase
-        keywords = get_keyword_from_supabase()
-        if keywords.empty:
-            print("No keyword found for today's date")
+    # Fetch keyword from Supabase
+    keywords = get_keyword_from_supabase()
+    if keywords.empty:
+        print("No keyword found for today's date")
 
-        for _, row in keywords.iterrows():
-            keyword = row["keyword_phrase"]
-            print("Trigger to workflow")
-            trigger_github_workflow(keyword, GITHUB_TOKEN)
+    for _, row in keywords.iterrows():
+        keyword = row["keyword_phrase"]
+        print("Trigger to workflow")
+        trigger_github_workflow(keyword, GITHUB_TOKEN)
