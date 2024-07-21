@@ -18,7 +18,7 @@ supabase = config.supabase
 db_config = config.get_database_config()
 current_time_gmt7 = config.current_time_gmt7
 GITHUB_TOKEN = os.getenv("MY_GITHUB_TOKEN")
-
+print(f"github token: {GITHUB_TOKEN}")
 
 # Your existing function to get the keyword from Supabase
 def get_keyword_from_supabase():
