@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+        keyword_list:
+          description: 'Keyword to process'
+          required: true
+          type: string
 
 jobs:
   fetch_asins:
@@ -28,4 +33,5 @@ jobs:
         env:
           KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-        run: main.py
+        run: |
+          python main.py "${{ fromJson(github.event.inputs.keyword_list) }}"
