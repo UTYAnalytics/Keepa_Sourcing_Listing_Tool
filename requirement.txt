@@ -1,0 +1,6 @@
+selenium
+psycopg2
+xvfb
+pyvirtualdisplay
+chromedriver-autoinstaller
+requests
