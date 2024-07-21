@@ -36,9 +36,8 @@ def get_keyword_from_supabase():
         cur.execute(
             """
                 SELECT date, keyword_phrase FROM keyword_input_sourcing 
-                WHERE date = %s
-            """,
-            (current_time_gmt7.strftime("%Y-%m-%d"),),
+                WHERE date = (select max(date) from keyword_input_sourcing)
+            """
         )
         # Fetch all results
         df = pd.DataFrame(cur.fetchall(), columns=["date", "keyword_phrase"])
