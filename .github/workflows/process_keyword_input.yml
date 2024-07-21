@@ -21,6 +21,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
 
       - name: Fetch Keepa ASINs
         env:
