@@ -72,8 +72,9 @@ while True:
         # Fetch keyword from Supabase
         keywords = get_keyword_from_supabase()
         if keywords.empty:
-            raise Exception("No keyword found for today's date")
+            print("No keyword found for today's date")
 
         for _, row in keywords.iterrows():
             keyword = row["keyword_phrase"]
+            print("Trigger to workflow")
             trigger_github_workflow(keyword, GITHUB_TOKEN)
