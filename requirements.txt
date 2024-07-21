@@ -3,3 +3,4 @@ psycopg2
 pyvirtualdisplay
 chromedriver-autoinstaller
 requests
+pandas
