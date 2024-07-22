@@ -30,7 +30,7 @@ server, email_address, email_password, subject_filter = config.get_otp_from_emai
 current_time_gmt7 = config.current_time_gmt7
 
 
-def keepa_viewer(driver, output_file_path, download_dir):
+def keepa_viewer(driver, output_file_path, download_dir,keyword_input):
     # Open Keepa
     driver.get("https://keepa.com/#!")
 
@@ -437,6 +437,7 @@ def keepa_viewer(driver, output_file_path, download_dir):
             ),
             axis=1,
         )
+        data["keyword_phrase"]=keyword_input
         data_dict = data.to_dict(orient="records")
         # Apply clean_data to each value in data_dict
         cleaned_data_dict = [

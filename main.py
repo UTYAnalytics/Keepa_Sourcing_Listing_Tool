@@ -92,7 +92,7 @@ with tempfile.TemporaryDirectory() as download_dir:
 
         output_file_path = f"{download_dir}/all_asins.txt"
         fetch_keepa_asins(key, domain, selection, output_file_path)
-        keepa_viewer(driver, output_file_path, download_dir)
+        keepa_viewer(driver, output_file_path, download_dir,keyword_list)
 
     finally:
         if driver:
