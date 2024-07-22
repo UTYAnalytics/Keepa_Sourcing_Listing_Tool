@@ -2,7 +2,7 @@ name: Process Input Keyword Sourcing
 
 on:
   schedule:
-    - cron: '0 * * * *'  # This will run the workflow every hour
+    - cron: '0 */6 * * *'  # This will run the workflow every hour
   workflow_dispatch:
 
 jobs:
